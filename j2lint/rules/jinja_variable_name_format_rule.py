@@ -32,7 +32,6 @@ class JinjaVariableNameFormatRule(Rule):
             matches = [match for match in matches if (
                 "'" not in match) and ('"' not in match)]
             if matches:
-                print(matches)
                 return True
 
         return False
