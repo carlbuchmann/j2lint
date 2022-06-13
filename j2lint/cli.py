@@ -159,6 +159,7 @@ def run(args=None):
         int: 0 on success
     """
 
+    # FIXME - remove this during refactoring
     # pylint: disable=too-many-branches
 
     parser = create_parser()
