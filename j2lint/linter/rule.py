@@ -9,8 +9,9 @@ from j2lint.logger import logger
 
 class Rule:
     """Rule class which acts as a base class for rules with regex match
-       functions.
+    functions.
     """
+
     id = None
     description = None
     ignore = False
@@ -20,13 +21,13 @@ class Rule:
         return self.id + ": " + self.description
 
     def checktext(self, file, text):
-        """ This method is expected to be overriden by child classes """
-        # pylint: disable=unused-argument
+        """This method is expected to be overriden by child classes"""
+        # pylint: disable=unused-argument, no-self-use
         return []
 
     def check(self, line):
-        """ This method is expected to be overriden by child classes """
-        # pylint: disable=unused-argument
+        """This method is expected to be overriden by child classes"""
+        # pylint: disable=unused-argument, no-self-use
         return []
 
     @staticmethod
@@ -58,19 +59,19 @@ class Rule:
 
         if not self.is_valid_language(file):
             logger.debug(
-                "Skipping file %s. Linter does not support linting this file type", file)
+                "Skipping file %s. Linter does not support linting this file type", file
+            )
             return errors
 
         for (index, line) in enumerate(text.split("\n")):
-            if line.lstrip().startswith('#'):
+            if line.lstrip().startswith("#"):
                 continue
 
             result = self.check(line)
             if not result:
                 continue
-            errors.append(LinterError(index+1, line, file['path'], self))
+            errors.append(LinterError(index + 1, line, file["path"], self))
         return errors
-
 
     def checkfulltext(self, file, text):
         """Checks the entire file text against a lint rule
@@ -86,13 +87,13 @@ class Rule:
 
         if not self.is_valid_language(file):
             logger.debug(
-                "Skipping file %s. Linter does not support linting this file type", file)
+                "Skipping file %s. Linter does not support linting this file type", file
+            )
             return errors
 
         results = self.checktext(file, text)
 
         for line, section, message in results:
-            errors.append(LinterError(
-                line, section, file['path'], self, message))
+            errors.append(LinterError(line, section, file["path"], self, message))
 
         return errors
