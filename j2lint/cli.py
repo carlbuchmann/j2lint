@@ -21,7 +21,7 @@ IGNORE_RULES = WARN_RULES = ['jinja-syntax-error',
                 'jinja-statements-indentation',
                 'jinja-statements-no-tabs',
                 'single-statement-per-line',
-                'jinja-statements-delimiter',
+                'jinja-statements-delimeter',
                 'jinja-variable-lower-case',
                 'jinja-variable-format',
                 'S0', 'S1', 'S2', 'S3', 'S4',
@@ -159,8 +159,8 @@ def run(args=None):
         int: 0 on success
     """
 
+    # pylint: disable=too-many-branches, fixme
     # FIXME - remove this during refactoring
-    # pylint: disable=too-many-branches
 
     parser = create_parser()
     options = parser.parse_args(args if args is not None else sys.argv[1:])
