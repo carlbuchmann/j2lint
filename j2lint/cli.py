@@ -65,12 +65,6 @@ def create_parser():
     return parser
 
 
-def print_j2lint_version(options):
-    """ Version of j2lint """
-    if options.version:
-        print(f"Jinja2-Linter Version {VERSION}")
-
-
 def sort_issues(issues):
     """Sorted list of issues
 
@@ -164,6 +158,9 @@ def run(args=None):
     Returns:
         int: 0 on success
     """
+
+    # pylint: disable=too-many-branches
+
     parser = create_parser()
     options = parser.parse_args(args if args is not None else sys.argv[1:])
 
@@ -207,7 +204,9 @@ def run(args=None):
         return 0
 
     # Version of j2lint
-    print_j2lint_version(options)
+    if options.version:
+        print(f"Jinja2-Linter Version {VERSION}")
+        return 0
 
     # Print help message
     if not file_or_dir_names:
