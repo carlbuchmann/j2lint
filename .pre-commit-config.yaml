@@ -19,6 +19,6 @@ repos:
         types: [python]
         args:
           # Suppress duplicate code for modules header
-          - -d duplicate-code
+          - -d duplicate-code, no-self-use
         additional_dependencies:
           - jinja2
